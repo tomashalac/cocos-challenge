@@ -42,7 +42,7 @@ export class PortfolioCalculator {
                 cash += order.size;
             } else if (order.side === 'CASH_OUT') {
                 cash -= order.size;
-            } else {
+            } else if (order.status == 'FILLED') {
                 this.initializePositionIfNotExists(positions, order, instrumentId);
                 this.processFilledOrder(positions, order, instrumentId, cash);
             }

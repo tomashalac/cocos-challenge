@@ -36,7 +36,7 @@ export class AssetCalculator {
     }
 
     private calculateAsset(position: Position): Asset {
-        const currentPrice = position.marketData?.close || position.marketData?.open || 0;
+        const currentPrice = position.marketData?.close || position.marketData?.previousClose || 0;
         const positionValue = position.quantity * currentPrice;
         const avgPrice = position.totalCost / Math.abs(position.quantity);
         const performance = avgPrice > 0 ? ((currentPrice - avgPrice) / avgPrice) * 100 : 0;
