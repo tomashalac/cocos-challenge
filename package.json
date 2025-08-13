@@ -1,0 +1,24 @@
+{
+    "name": "cocos-challenge",
+    "version": "1.0.0",
+    "main": "index.js",
+    "scripts": {
+        "install-pnpm": "pnpm install",
+        "run-ts": "ts-node src/index.ts",
+        "compile-tsc": "tsc --build",
+        "test": "jest"
+    },
+    "dependencies": {
+        "express": "^4.19.2",
+        "typeorm": "0.3.21",
+        "dotenv": "17.2.1",
+        "pg": "8.16.3"
+    },
+    "devDependencies": {
+        "@types/express": "^4.17.21",
+        "@types/node": "^20.14.8",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.5.3",
+        "jest": "30.0.5"
+    }
+}
