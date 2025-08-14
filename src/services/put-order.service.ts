@@ -23,6 +23,13 @@ export class PutOrderService {
     }
 
     async submitOrder(orderData: SubmitOrderDTO): Promise<{ order: Order, error?: OrderValidationResult }> {
+        const instrument = await this.instrumentRepository.findOne({
+            where: { id: orderData.instrumentId }
+        });
+        if (!instrument || instrument == null) {
+            return { error: { isValid: false, error: 'Instrument not found' }, order: undefined };
+        }
+
         const validation = await this.validateOrder(orderData);
         if (!validation.isValid) {
             return { error: validation, order: await this.createRejectedOrder(orderData, validation.error!) };
@@ -46,13 +53,6 @@ export class PutOrderService {
     }
 
     private async validateOrder(orderData: SubmitOrderDTO): Promise<OrderValidationResult> {
-        const instrument = await this.instrumentRepository.findOne({
-            where: { id: orderData.instrumentId }
-        });
-        if (!instrument) {
-            return { isValid: false, error: 'Instrument not found' };
-        }
-
         const currentPrice = await this.getPrice(orderData.instrumentId);
         if (currentPrice.error) {
             return currentPrice.error;
@@ -151,7 +151,7 @@ export class PutOrderService {
 
     private async getPrice(instrumentId: number): Promise<{ error?: OrderValidationResult, price?: number }> {
         const marketData = await this.getLatestMarketData(instrumentId);
-        if (!marketData) {
+        if (!marketData || marketData == null) {
             return { error: { isValid: false, error: 'No market data available' } };
         }
 

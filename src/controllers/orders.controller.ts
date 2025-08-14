@@ -57,12 +57,10 @@ class OrderController {
             const error = orderResponse.error;
             const order = orderResponse.order;
 
-            if (order.status === 'REJECTED' || error) {
-                return res.status(400).json({
-                    success: false,
-                    message: 'Order rejected',
-                    error: error,
-                    order: {
+            if (error || order.status === 'REJECTED') {
+                let orderObj = undefined;
+                if (order) {
+                    orderObj = {
                         id: order.id,
                         status: order.status,
                         instrumentId: order.instrumentId,
@@ -71,7 +69,13 @@ class OrderController {
                         quantity: order.size,
                         price: order.price,
                         datetime: order.datetime
-                    }
+                    };
+                }
+                return res.status(400).json({
+                    success: false,
+                    message: 'Order rejected',
+                    error: error,
+                    order: orderObj,
                 });
             }
 
