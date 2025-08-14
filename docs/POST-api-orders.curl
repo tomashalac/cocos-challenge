@@ -1,0 +1,10 @@
+curl --location 'http://localhost:3000/api/orders' \
+--header 'Content-Type: application/json' \
+--data '{
+  "userId": 1,
+  "instrumentId": 5,
+  "side": "SELL",
+  "type": "LIMIT",
+  "price":"10",
+  "quantity": 10
+}'
