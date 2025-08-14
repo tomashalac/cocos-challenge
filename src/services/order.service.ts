@@ -75,7 +75,7 @@ SELECT o.*,
                 order.instrument.marketData[0].open = parseFloat(row.open);
                 order.instrument.marketData[0].close = parseFloat(row.close);
                 order.instrument.marketData[0].previousClose = parseFloat(row.previousclose);
-                order.instrument.marketData[0].datetime = row.market_datetime;
+                order.instrument.marketData[0].date = row.market_datetime;
             }
 
             return order;
