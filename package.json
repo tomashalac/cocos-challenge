@@ -19,6 +19,11 @@
         "@types/node": "^20.14.8",
         "ts-node": "^10.9.2",
         "typescript": "^5.5.3",
-        "jest": "30.0.5"
+        "jest": "30.0.5",
+        "@jest/types": "30.0.5",
+        "supertest": "7.1.4",
+        "@types/supertest": "6.0.3",
+        "ts-jest": "29.4.1",
+        "@types/jest": "30.0.0"
     }
 }
