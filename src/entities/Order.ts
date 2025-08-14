@@ -11,7 +11,7 @@ export class Order {
     @PrimaryGeneratedColumn()
     id: number;
 
-    @Column()
+    @Column({ name: "userid" })
     userId: number;
 
     @Column({ name: 'instrumentid' })

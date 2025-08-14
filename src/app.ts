@@ -16,9 +16,9 @@ app.use(express.json());
 
 app.use(logRequestAndResponse);
 
-app.get('/api/portfolio/:userId', portfolioController.getPortfolio);
-app.get('/api/instruments/search', instrumentController.searchInstruments);
-app.post('/api/orders', orderController.submitOrder);
+app.get('/api/portfolio/:userId', portfolioController.getPortfolio.bind(portfolioController));
+app.get('/api/instruments/search', instrumentController.searchInstruments.bind(instrumentController));
+app.post('/api/orders', orderController.submitOrder.bind(orderController));
 
 
 app.use('*', (req, res) => {

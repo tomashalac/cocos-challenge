@@ -22,11 +22,11 @@ export class MarketData {
     @Column("decimal", { precision: 10, scale: 2 })
     close: number;
 
-    @Column("decimal", { precision: 10, scale: 2 })
+    @Column("decimal", { precision: 10, scale: 2, name: "previousclose" })
     previousClose: number;
 
     @Column()
-    datetime: Date;
+    date: Date;
 
     @ManyToOne(() => Instrument, instrument => instrument.marketData)
     @JoinColumn({ name: 'instrumentid', referencedColumnName: 'id' })
