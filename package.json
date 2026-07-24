@@ -10,7 +10,7 @@
     },
     "dependencies": {
         "express": "^4.19.2",
-        "typeorm": "0.3.21",
+        "typeorm": "0.3.31",
         "dotenv": "17.2.1",
         "pg": "8.16.3"
     },
